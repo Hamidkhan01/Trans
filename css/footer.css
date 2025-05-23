@@ -1,0 +1,586 @@
+
+
+
+
+
+/* Hippo Offcanvas: Condensed Version */
+.hippo-offcanvas-wrapper,
+.hippo-offcanvas-pusher,
+.hippo-offcanvas-contents {
+  height: 100%;
+}
+
+.hippo-offcanvas-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.hippo-offcanvas-pusher {
+  position: relative;
+  z-index: 99;
+  transition: transform 0.5s;
+}
+
+.hippo-offcanvas-pusher::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+  z-index: 1200;
+}
+
+.hippo-offcanvas-open .hippo-offcanvas-pusher::after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.hippo-offcanvas-container {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: #27272c;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.hippo-offcanvas-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.hippo-offcanvas-open .hippo-offcanvas-container::after {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.hippo-offcanvas-container > div {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.hippo-offcanvas-left .hippo-offcanvas-container {
+  left: 0;
+}
+.hippo-offcanvas-right .hippo-offcanvas-container {
+  right: 0;
+}
+
+/* Effect 1: Slide in on top */
+.slide-in-on-top .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.slide-in-on-top .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.slide-in-on-top.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.slide-in-on-top .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 2: Reveal */
+.reveal.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.reveal.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.reveal .hippo-offcanvas-container {
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+.reveal.hippo-offcanvas-open .hippo-offcanvas-container {
+  z-index: 1;
+  visibility: visible;
+  opacity: 1;
+}
+.reveal .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 3: Push */
+.push-down.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.push-down.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.push-down .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.push-down .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.push-down.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.push-down .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 4: Slide along */
+.slide-along.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.slide-along.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.slide-along .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translateX(-50%);
+}
+.hippo-offcanvas-right.slide-along .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translateX(50%);
+}
+.slide-along.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.slide-along .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 5: Reverse slide out */
+.reverse-slide-out.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.reverse-slide-out.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.reverse-slide-out .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translateX(50%);
+}
+.hippo-offcanvas-right.reverse-slide-out .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translateX(-50%);
+}
+.reverse-slide-out.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* Effect 6: Rotate pusher */
+.rotate-pusher.hippo-offcanvas-wrapper {
+  perspective: 1500px;
+}
+.hippo-offcanvas-left.rotate-pusher .hippo-offcanvas-pusher {
+  transform-origin: 0% 50%;
+}
+.hippo-offcanvas-right.rotate-pusher .hippo-offcanvas-pusher {
+  transform-origin: 100% 50%;
+}
+.hippo-offcanvas-left.rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(300px) rotateY(-15deg);
+}
+.hippo-offcanvas-right.rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px) rotateY(15deg);
+}
+.hippo-offcanvas-left.rotate-pusher .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.rotate-pusher .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.hippo-offcanvas-left.rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(-100%) rotateY(15deg);
+}
+.hippo-offcanvas-right.rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(100%) rotateY(-15deg);
+}
+.rotate-pusher .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 7: 3D rotate in */
+.three-d-rotate-in.hippo-offcanvas-wrapper {
+  perspective: 1500px;
+}
+.hippo-offcanvas-left.three-d-rotate-in.hippo-offcanvas-wrapper {
+  perspective-origin: 0% 50%;
+}
+.hippo-offcanvas-right.three-d-rotate-in.hippo-offcanvas-wrapper {
+  perspective-origin: 100% 50%;
+}
+.three-d-rotate-in .hippo-offcanvas-pusher {
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.three-d-rotate-in.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.three-d-rotate-in.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.three-d-rotate-in .hippo-offcanvas-container {
+  transform: translateX(-100%) rotateY(-90deg);
+  transform-origin: 100% 50%;
+}
+.hippo-offcanvas-right.three-d-rotate-in .hippo-offcanvas-container {
+  transform: translateX(100%) rotateY(90deg);
+  transform-origin: 0% 50%;
+}
+.hippo-offcanvas-left.three-d-rotate-in.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(-100%) rotateY(0);
+}
+.hippo-offcanvas-right.three-d-rotate-in.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(100%) rotateY(0);
+}
+
+/* Effect 8: 3D rotate out */
+.three-d-rotate-out.hippo-offcanvas-wrapper {
+  perspective: 1500px;
+}
+.hippo-offcanvas-left.three-d-rotate-out.hippo-offcanvas-wrapper {
+  perspective-origin: 0% 50%;
+}
+.hippo-offcanvas-right.three-d-rotate-out.hippo-offcanvas-wrapper {
+  perspective-origin: 100% 50%;
+}
+.three-d-rotate-out .hippo-offcanvas-pusher {
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.three-d-rotate-out.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.three-d-rotate-out.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.three-d-rotate-out .hippo-offcanvas-container {
+  transform: translateX(-100%) rotateY(90deg);
+  transform-origin: 100% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-right.three-d-rotate-out .hippo-offcanvas-container {
+  transform: translateX(100%) rotateY(-90deg);
+  transform-origin: 0% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.three-d-rotate-out.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(-100%) rotateY(0);
+}
+.hippo-offcanvas-right.three-d-rotate-out.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(100%) rotateY(0);
+}
+.three-d-rotate-out .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 9: Scale down pusher */
+.scale-down-pusher.hippo-offcanvas-wrapper {
+  perspective: 1000px;
+}
+.scale-down-pusher .hippo-offcanvas-pusher {
+  transform-style: preserve-3d;
+}
+.scale-down-pusher.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translate3d(0, 0, -300px);
+  overflow: hidden;
+}
+.hippo-offcanvas-left.scale-down-pusher .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.scale-down-pusher .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.scale-down-pusher.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.scale-down-pusher .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 10: Scale up */
+.scale-up.hippo-offcanvas-wrapper {
+  perspective: 1000px;
+  perspective-origin: 0% 50%;
+}
+.hippo-offcanvas-left.scale-up.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.scale-up.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.scale-up .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translate3d(0, 0, -300px);
+}
+.hippo-offcanvas-right.scale-up .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translate3d(150%, 0, -300px);
+}
+.scale-up.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Effect 11: Scale and rotate pusher */
+.scale-rotate-pusher.hippo-offcanvas-wrapper {
+  perspective: 1000px;
+}
+.scale-rotate-pusher .hippo-offcanvas-pusher {
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.scale-rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translate3d(100px, 0, -600px) rotateY(-20deg);
+  overflow: hidden;
+}
+.hippo-offcanvas-right.scale-rotate-pusher.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translate3d(-100px, 0, -600px) rotateY(20deg);
+  overflow: hidden;
+}
+.hippo-offcanvas-left.scale-rotate-pusher .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.scale-rotate-pusher .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.scale-rotate-pusher.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.scale-rotate-pusher .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 12: Open door */
+.open-door.hippo-offcanvas-wrapper {
+  perspective: 1000px;
+}
+.hippo-offcanvas-left.open-door .hippo-offcanvas-pusher {
+  transform-origin: 100% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-right.open-door .hippo-offcanvas-pusher {
+  transform-origin: 0% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.open-door.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: rotateY(-10deg);
+  overflow: hidden;
+}
+.hippo-offcanvas-right.open-door.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: rotateY(10deg);
+  overflow: hidden;
+}
+.hippo-offcanvas-left.open-door .hippo-offcanvas-container {
+  transform: translateX(-100%);
+}
+.hippo-offcanvas-right.open-door .hippo-offcanvas-container {
+  transform: translateX(100%);
+}
+.open-door.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(0);
+}
+.open-door .hippo-offcanvas-container::after {
+  display: none;
+}
+
+/* Effect 13: Fall down */
+.fall-down.hippo-offcanvas-wrapper {
+  perspective: 1500px;
+  perspective-origin: 0% 50%;
+}
+.hippo-offcanvas-left.fall-down.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.fall-down.hippo-offcanvas-open .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.fall-down .hippo-offcanvas-container {
+  z-index: 1;
+  transform: translateY(-100%);
+}
+.fall-down.hippo-offcanvas-open .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateY(0);
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.2s;
+}
+
+/* Effect 14: Delayed 3D rotate */
+.delayed-three-d-rotate.hippo-offcanvas-wrapper {
+  perspective: 1500px;
+}
+.hippo-offcanvas-left.delayed-three-d-rotate.hippo-offcanvas-wrapper {
+  perspective-origin: 0% 50%;
+}
+.hippo-offcanvas-right.delayed-three-d-rotate.hippo-offcanvas-wrapper {
+  perspective-origin: 100% 50%;
+}
+.delayed-three-d-rotate .hippo-offcanvas-pusher {
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.delayed-three-d-rotate.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(300px);
+}
+.hippo-offcanvas-right.delayed-three-d-rotate.hippo-offcanvas-open
+  .hippo-offcanvas-pusher {
+  transform: translateX(-300px);
+}
+.hippo-offcanvas-left.delayed-three-d-rotate .hippo-offcanvas-container {
+  transform: translateX(-100%) rotateY(90deg);
+  transform-origin: 0% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-right.delayed-three-d-rotate .hippo-offcanvas-container {
+  transform: translateX(100%) rotateY(-90deg);
+  transform-origin: 100% 50%;
+  transform-style: preserve-3d;
+}
+.hippo-offcanvas-left.delayed-three-d-rotate.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(-100%) rotateY(0);
+  transition-delay: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+.hippo-offcanvas-right.delayed-three-d-rotate.hippo-offcanvas-open
+  .hippo-offcanvas-container {
+  visibility: visible;
+  transform: translateX(100%) rotateY(0);
+  transition-delay: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+
+/* IE fix */
+.ie9 .reveal .hippo-offcanvas-container,
+.ie10 .reveal .hippo-offcanvas-container,
+.ie11 .reveal .hippo-offcanvas-container {
+  display: none !important;
+}
+.ie9 .reveal.hippo-offcanvas-open .hippo-offcanvas-container,
+.ie10 .reveal.hippo-offcanvas-open .hippo-offcanvas-container,
+.ie11 .reveal.hippo-offcanvas-open .hippo-offcanvas-container {
+  display: block !important;
+}
+
+/* Customization */
+.offcanvas-menu .off-canvas-header {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  z-index: 1;
+}
+
+#off-canvas-close-btn {
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+  opacity: 1;
+}
+
+#off-canvas-close-btn:hover,
+#off-canvas-close-btn:focus {
+  background: #65d3e3;
+  outline: none;
+}
+
+#offcanvasMenu li a {
+  display: block;
+  padding: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+}
+
+#offcanvasMenu li a .fa {
+  position: absolute;
+  right: 20px;
+  font-size: 18px;
+  line-height: 35px;
+}
+
+#offcanvasMenu li a:hover,
+#offcanvasMenu li.active a {
+  background: transparent;
+  color: #65d3e3;
+  text-decoration: none;
+}
+
+#offcanvasMenu > li ul {
+  display: none;
+}
+
+#offcanvasMenu li.open ul {
+  display: block;
+  padding-left: 30px;
+}
+
+#offcanvasMenu li.open ul li a {
+  padding: 5px 0;
+  font-size: 14px;
+  box-shadow: none;
+  text-transform: capitalize;
+}
+
+#offcanvasMenu li.open > a > i {
+  transform: rotateZ(90deg);
+}
+
+.offcanvas-widgets {
+  padding: 45px 10px 0;
+  color: #727e89;
+}
+
+.offcanvas-widgets #twitterWidget {
+  margin-bottom: 30px;
+}
+
+.offcanvas-widgets h2 {
+  margin-bottom: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #fff;
+}
