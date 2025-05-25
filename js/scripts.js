@@ -2,68 +2,36 @@ jQuery(function($) {
 
     'use strict';
 
-    /* ---------------------------------------------- /*
-     * Preloader
-    /* ---------------------------------------------- */
-
     $(function() {
         $('#status').fadeOut();
         $('#preloader').delay(200).fadeOut('slow');
-
     });
-
-
-
-    // -------------------------------------------------------------
-    // Sticky Menu
-    // -------------------------------------------------------------
 
     (function() {
         var nav = $('.navbar');
         var scrolled = false;
 
         $(window).scroll(function() {
-
             if (110 < $(window).scrollTop() && !scrolled) {
                 nav.addClass('sticky animated fadeInDown').animate({
                     'margin-top': '0px'
                 });
-
                 scrolled = true;
             }
-
             if (110 > $(window).scrollTop() && scrolled) {
                 nav.removeClass('sticky animated fadeInDown').css('margin-top', '0px');
-
                 scrolled = false;
             }
         });
 
     }());
 
-
-
-
-    // -------------------------------------------------------------
-    // Sticky Elements
-    // -------------------------------------------------------------
-
     $(function() {
-
         $(".sticky-div").stick_in_parent({
-
             container: $(".sticky-container"),
             offset_top: 90
         });
-
-
     });
-
-
-
-    // -------------------------------------------------------------
-    // Menu Search Button
-    // -------------------------------------------------------------
 
     $(function() {
         $('a[href="#search"]').on('click', function(event) {
@@ -77,33 +45,18 @@ jQuery(function($) {
                 $(this).removeClass('open');
             }
         });
-
     });
-
-
-
-
-    // -------------------------------------------------------------
-    // Magnific  Popup
-    // -------------------------------------------------------------
 
     (function() {
         $('.img-link').magnificPopup({
-
             gallery: {
                 enabled: true
             },
-            removalDelay: 300, // Delay in milliseconds before popup is removed
-            mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+            removalDelay: 300,
+            mainClass: 'mfp-with-zoom',
             type: 'image'
-
         });
     }());
-
-
-    // -------------------------------------------------------------
-    // Language Select JS
-    // -------------------------------------------------------------
 
     (function() {
         [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function(el) {
@@ -111,23 +64,15 @@ jQuery(function($) {
         });
     })();
 
-
-    // -------------------------------------------------------------
-    // OffCanvas
-    // -------------------------------------------------------------
-
     (function() {
         $('button.navbar-toggle').HippoOffCanvasMenu({
-
             documentWrapper: '#st-container',
             contentWrapper: '.st-content',
-            position: 'hippo-offcanvas-left', // class name
-            // opener         : 'st-menu-open',            // class name
-            effect: 'slide-in-on-top', // class name
+            position: 'hippo-offcanvas-left',
+            effect: 'slide-in-on-top',
             closeButton: '#off-canvas-close-btn',
-            menuWrapper: '.offcanvas-menu', // class name below-pusher
+            menuWrapper: '.offcanvas-menu',
             documentPusher: '.st-pusher'
-
         });
         var ico = $('<i class="fa fa-caret-right"></i>');
         $('#offcanvasMenu li:has(ul) > a').append(ico);
@@ -137,14 +82,7 @@ jQuery(function($) {
         });
     }());
 
-
-
-    // -------------------------------------------------------------
-    // Partner Carousel
-    // -------------------------------------------------------------
-
     (function() {
-
         $('.partner-carousel').owlCarousel({
             loop: true,
             margin: 15,
@@ -159,40 +97,25 @@ jQuery(function($) {
                     items: 6
                 }
             }
-        })
+        });
 
-
-        // Navigation
         var owl = $('.partner-carousel');
         owl.owlCarousel();
 
-        // Go to the next item
         $('.partner-carousel-navigation .next').on('click', function() {
             owl.trigger('next.owl.carousel');
-        })
+        });
 
-        // Go to the previous item
         $('.partner-carousel-navigation .prev').on('click', function() {
             owl.trigger('prev.owl.carousel', [300]);
         });
-
-
     }());
 
-
-
-    //-------------------------------------------------------
-    // counter
-    //-------------------------------------------------------
-    $('.count-description').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
+    $('.count-description').bind('inview', function(event, visible) {
         if (visible) {
             $(this).find('.timer').each(function() {
                 var $this = $(this);
-                $({
-                    Counter: 0
-                }).animate({
-                    Counter: $this.text()
-                }, {
+                $({ Counter: 0 }).animate({ Counter: $this.text() }, {
                     duration: 2000,
                     easing: 'swing',
                     step: function() {
@@ -204,19 +127,11 @@ jQuery(function($) {
         }
     });
 
-
-    //-------------------------------------------------------
-    // about page counter
-    //-------------------------------------------------------
-    $('.company-in-number').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
+    $('.company-in-number').bind('inview', function(event, visible) {
         if (visible) {
             $(this).find('.timer').each(function() {
                 var $this = $(this);
-                $({
-                    Counter: 0
-                }).animate({
-                    Counter: $this.text()
-                }, {
+                $({ Counter: 0 }).animate({ Counter: $this.text() }, {
                     duration: 2000,
                     easing: 'swing',
                     step: function() {
@@ -228,43 +143,24 @@ jQuery(function($) {
         }
     });
 
-
-    // -------------------------------------------------------------
-    // Detect IE version
-    // -------------------------------------------------------------
     (function() {
         function getIEVersion() {
             var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
             return match ? parseInt(match[1]) : false;
         }
 
-
         if (getIEVersion()) {
             $('html').addClass('ie' + getIEVersion());
         }
 
-
         if ($('html').hasClass('ie9') || $('html').hasClass('ie10')) {
-
             $('.submenu-wrapper').each(function() {
-
                 $(this).addClass('no-pointer-events');
-
             });
-
         }
-
     }());
 
-
-
-
-    // ------------------------------------------------------------------
-    // jQuery for back to Top
-    // ------------------------------------------------------------------
-
     (function() {
-
         $('body').append('<div id="toTop"><i class="fa fa-angle-double-up"></i></div>');
 
         $(window).scroll(function() {
@@ -276,100 +172,58 @@ jQuery(function($) {
         });
 
         $('#toTop').on('click', function() {
-            $("html, body").animate({
-                scrollTop: 0
-            }, 600);
+            $("html, body").animate({ scrollTop: 0 }, 600);
             return false;
         });
-
     }());
 
-
-
-    // -----------------------------------------------------------------
-    //STELLAR FOR BACKGROUND SCROLLING
-    // ------------------------------------------------------------------
-
-    $(window).load(function() {
-
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-
-        } else {
+    $(window).on('load', function() {
+        if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             $.stellar({
                 horizontalScrolling: false,
                 responsive: true
             });
         }
-
     });
 
-
-    // ----------------------------------------------------------------
-    //  Dropdown menu
-    // ----------------------------------------------------------------
-
-
     (function() {
-
-
         function getIEVersion() {
             var match = navigator.userAgent.match(/(?:MSIE |Trident\/.*; rv:)(\d+)/);
             return match ? parseInt(match[1]) : false;
         }
 
-
         if (getIEVersion()) {
             $('html').addClass('ie' + getIEVersion());
         }
 
-
         if ($('html').hasClass('ie9') || $('html').hasClass('ie10')) {
-
             $('.submenu-wrapper').each(function() {
-
                 $(this).addClass('no-pointer-events');
-
             });
-
         }
-
 
         var timer;
 
         $('li.dropdown').on('mouseenter', function(event) {
-
-
             event.stopImmediatePropagation();
             event.stopPropagation();
-
             $(this).removeClass('open menu-animating').addClass('menu-animating');
             var that = this;
-
 
             if (timer) {
                 clearTimeout(timer);
                 timer = null;
             }
 
-
             timer = setTimeout(function() {
-
                 $(that).removeClass('menu-animating');
                 $(that).addClass('open');
-
-            }, 300); // 300ms as animation end time
-
-
+            }, 300);
         });
 
-        // on mouse leave
-
         $('li.dropdown').on('mouseleave', function(event) {
-
             var that = this;
-
             $(this).removeClass('open menu-animating').addClass('menu-animating');
-
 
             if (timer) {
                 clearTimeout(timer);
@@ -377,26 +231,14 @@ jQuery(function($) {
             }
 
             timer = setTimeout(function() {
-
                 $(that).removeClass('menu-animating');
                 $(that).removeClass('open');
-
-            }, 300); // 300ms as animation end time
-
+            }, 300);
         });
-
     }());
 
-
-
-    // -----------------------------------------------------------------
-    //CONTACT FORM
-    // ------------------------------------------------------------------
-
     (function() {
-
         $('#contactForm').on('submit', function(e) {
-
             e.preventDefault();
 
             var $action = $(this).prop('action');
@@ -406,37 +248,23 @@ jQuery(function($) {
             $this.prevAll('.alert').remove();
 
             $.post($action, $data, function(data) {
-
                 if (data.response == 'error') {
-
                     $this.before('<div class="alert alert-danger">' + data.message + '</div>');
                 }
-
                 if (data.response == 'success') {
-
                     $this.before('<div class="alert alert-success">' + data.message + '</div>');
                     $this.find('input, textarea').val('');
                 }
-
             }, "json");
-
         });
     }());
 
-
-
-    // -----------------------------------------------------------------
-    //GOOGLE MAP
-    // ------------------------------------------------------------------
-
-    //set your google maps parameters
-    var $latitude = 48.869319, //If you unable to find latitude and longitude of your address. Please visit http://www.latlong.net/convert-address-to-lat-long.html you can easily generate.
+    var $latitude = 48.869319,
         $longitude = 2.354261,
-        $map_zoom = 16; /* ZOOM SETTING */
-    //google map custom marker icon
+        $map_zoom = 16;
+
     var $marker_url = 'img/map-marker.png';
 
-    //we define here the style of the map
     var style = [{
         "stylers": [{
             "hue": "#65d3e3"
@@ -449,15 +277,8 @@ jQuery(function($) {
         }]
     }];
 
-    //Contact page map
-
     (function() {
-
-
         if ($('#contactMap').length > 0) {
-
-
-            //set google map options
             var map_options = {
                 center: new google.maps.LatLng($latitude, $longitude),
                 zoom: $map_zoom,
@@ -468,11 +289,9 @@ jQuery(function($) {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: false,
                 styles: style,
-            }
+            };
 
-            //initialize the map
             var map = new google.maps.Map(document.getElementById('contactMap'), map_options);
-            //add a custom marker to the map
 
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng($latitude, $longitude),
@@ -480,18 +299,11 @@ jQuery(function($) {
                 visible: true,
                 icon: $marker_url,
             });
-        };
-
+        }
     }());
 
-    //Modal map
     (function() {
-
-
         if ($('#googleMap').length > 0) {
-
-
-            //set google map options
             var map_options = {
                 center: new google.maps.LatLng($latitude, $longitude),
                 zoom: $map_zoom,
@@ -502,10 +314,10 @@ jQuery(function($) {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 scrollwheel: false,
                 styles: style,
-            }
-            //initialize the map
+            };
+
             var map = new google.maps.Map(document.getElementById('googleMap'), map_options);
-            //add a custom marker to the map
+
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng($latitude, $longitude),
                 map: map,
@@ -514,15 +326,10 @@ jQuery(function($) {
             });
 
             $('#cssMapModal').on('shown.bs.modal', function() {
-
                 google.maps.event.trigger(map, 'resize');
                 map.setCenter(new google.maps.LatLng($latitude, $longitude));
             });
-
-        };
-
+        }
     }());
 
-
-
- 
+});
